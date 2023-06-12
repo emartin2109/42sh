@@ -1,0 +1,17 @@
+{
+  "quotes-no-space": {
+    "command": "echo'test'",
+    "output": "test",
+    "status": 0
+  },
+  "ambiguous-output-redirect": {
+    "command": "echo test > out > out",
+    "output": "Ambiguous output redirect.",
+    "status": 1
+  },
+  "semicolon-invalidcommand": {
+    "command": "echo test; invalidcommand; echo test2",
+    "output": "test\ninvalidcommand: Command not found.\ntest2",
+    "status": 0
+  }
+}

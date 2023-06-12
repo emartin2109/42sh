@@ -1,0 +1,237 @@
+{
+  "basic-no-output": {
+    "command": "touch test",
+    "output": "",
+    "status": 0
+  },
+  "basic-output": {
+    "command": "echo test",
+    "output": "test",
+    "status": 0
+  },
+  "basic-exit": {
+    "command": "exit 1",
+    "output": "",
+    "status": 1
+  },
+  "invalid-command": {
+    "command": "thiscommanddoesnotexist",
+    "output": "thiscommanddoesnotexist: Command not found.",
+    "status": 1
+  },
+  "no-command": {
+    "command": "> /dev/null",
+    "output": "Invalid null command.",
+    "status": 1
+  },
+  "empty": {
+    "command": "",
+    "output": "",
+    "status": 0
+  },
+  "spaces-leading": {
+    "command": "   echo test",
+    "output": "test",
+    "status": 0
+  },
+  "spaces-trailing": {
+    "command": "echo test   ",
+    "output": "test",
+    "status": 0
+  },
+  "tabs": {
+    "command": "echo\ttest",
+    "output": "test",
+    "status": 0
+  },
+  "quotes": {
+    "command": "seq -s ' ' 5",
+    "output": "1 2 3 4 5",
+    "status": 0
+  },
+  "quotes-unmatched": {
+    "command": "echo 'test",
+    "output": "Unmatched \"'\".",
+    "status": 1
+  },
+  "redirect-output": {
+    "command": "echo test > out",
+    "output": "",
+    "status": 0
+  },
+  "redirect-output-check": {
+    "command": "cat out",
+    "output": "test",
+    "status": 0
+  },
+  "redirect-output-before": {
+    "command": "> outbefore echo test",
+    "output": "",
+    "status": 0
+  },
+  "redirect-output-before-check": {
+    "command": "cat outbefore",
+    "output": "test",
+    "status": 0
+  },
+  "redirect-output-no-file": {
+    "command": "echo test >",
+    "output": "Missing name for redirect.",
+    "status": 1
+  },
+  "append-output": {
+    "command": "echo test >> append",
+    "output": "",
+    "status": 0
+  },
+  "append-output-check": {
+    "command": "cat append",
+    "output": "test",
+    "status": 0
+  },
+  "append-output2": {
+    "command": "echo test2 >> append",
+    "output": "",
+    "status": 0
+  },
+  "append-output2-check": {
+    "command": "cat append",
+    "output": "test\ntest2",
+    "status": 0
+  },
+  "redirect-input": {
+    "command": "cat < out",
+    "output": "test",
+    "status": 0
+  },
+  "redirect-input-before": {
+    "command": "< out cat",
+    "output": "test",
+    "status": 0
+  },
+  "redirect-input-no-file": {
+    "command": "cat <",
+    "output": "Missing name for redirect.",
+    "status": 1
+  },
+  "ambiguous-input-redirect": {
+    "command": "cat < out < out",
+    "output": "Ambiguous input redirect.",
+    "status": 1
+  },
+  "semicolon": {
+    "command": "echo test; echo test2",
+    "output": "test\ntest2",
+    "status": 0
+  },
+  "semicolon-no-command": {
+    "command": "echo test; ; echo test2",
+    "output": "test\ntest2",
+    "status": 0
+  },
+  "semicolon-exit-fist": {
+    "command": "exit 1; echo test",
+    "output": "test",
+    "status": 0
+  },
+  "semicolon-exit-last": {
+    "command": "echo test; exit 1",
+    "output": "test",
+    "status": 1
+  },
+  "semicolon-only": {
+    "command": ";",
+    "output": "",
+    "status": 0
+  },
+  "setenv": {
+    "command": "setenv TEST test",
+    "output": "",
+    "status": 0
+  },
+  "setenv-too-many-args": {
+    "command": "setenv TEST test test",
+    "output": "setenv: Too many arguments.",
+    "status": 1
+  },
+  "setenv-invalid-name": {
+    "command": "setenv T-EST test",
+    "output": "setenv: Variable name must contain alphanumeric characters.",
+    "status": 1
+  },
+  "unsetenv": {
+    "command": "unsetenv TEST",
+    "output": "",
+    "status": 0
+  },
+  "unsetenv-too-few-args": {
+    "command": "unsetenv",
+    "output": "unsetenv: Too few arguments.",
+    "status": 1
+  },
+  "double-pipe": {
+    "command": "echo test || echo test2",
+    "output": "test",
+    "status": 0
+  },
+  "double-pipe-false": {
+    "command": "false || echo test",
+    "output": "test",
+    "status": 0
+  },
+  "double-pipe-true": {
+    "command": "true || echo test",
+    "output": "",
+    "status": 0
+  },
+  "double-pipe-false-false": {
+    "command": "false || false",
+    "output": "",
+    "status": 1
+  },
+  "double-ampersand": {
+    "command": "echo test && echo test2",
+    "output": "test\ntest2",
+    "status": 0
+  },
+  "double-ampersand-false": {
+    "command": "false && echo test",
+    "output": "",
+    "status": 1
+  },
+  "double-ampersand-true": {
+    "command": "true && echo test",
+    "output": "test",
+    "status": 0
+  },
+  "set-local": {
+    "command": "set aa bb",
+    "output": "",
+    "status": 0
+  },
+  "set-local-view": {
+    "command": "set",
+    "output": "",
+    "status": 0
+  },
+  "set-local-val": {
+    "command": "set aa=bb",
+    "output": "",
+    "status": 0
+  },
+  "set-local-add-view": {
+    "command": "set aa; set",
+    "output": "aa=",
+    "status": 0
+  },
+  "set-local-add-val-view": {
+    "command": "set aa=bb; set",
+    "output": "aa=bb",
+    "status": 0
+  },
+  "set-unset-local": {
+    "command": "set aa bb; unset aa; set",
+    "output": "bb=",
+    "status": 0
+  }
+}
